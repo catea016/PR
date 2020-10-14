@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7b8ed8ac-f2dc-4297-9c6e-a3d8eab378df" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1im44svHrG1sDfLExJRTJB5xhzo" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\IdeaProjects\PR_Labs\libs" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.MultithreadingRequest">
+    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Lab_1.Client" />
+      <module name="PR_Labs" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Lab_1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MultithreadingRequest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Lab_1.MultithreadingRequest" />
+      <module name="PR_Labs" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Lab_1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MultithreadingRequest" />
+        <item itemvalue="Application.Client" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7b8ed8ac-f2dc-4297-9c6e-a3d8eab378df" name="Default Changelist" comment="" />
+      <created>1602499244523</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1602499244523</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="416" y="55" key="DetectedRootsChooserDialog" timestamp="1602500368121">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="416" y="55" key="DetectedRootsChooserDialog/0.0.1280.680@0.0.1280.680" timestamp="1602500368121" />
+    <state x="369" y="81" key="FileChooserDialogImpl" timestamp="1602618075464">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="369" y="81" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1602618075464" />
+    <state width="1237" height="262" key="GridCell.Tab.0.bottom" timestamp="1602696475482">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="262" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602696475482" />
+    <state width="1237" height="262" key="GridCell.Tab.0.center" timestamp="1602696475482">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="262" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1602696475482" />
+    <state width="1237" height="262" key="GridCell.Tab.0.left" timestamp="1602696475481">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="262" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1602696475481" />
+    <state width="1237" height="262" key="GridCell.Tab.0.right" timestamp="1602696475482">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="262" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1602696475482" />
+    <state width="1237" height="147" key="GridCell.Tab.1.bottom" timestamp="1602624887197">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="147" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602624887197" />
+    <state width="1237" height="147" key="GridCell.Tab.1.center" timestamp="1602624887197">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="147" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1602624887197" />
+    <state width="1237" height="147" key="GridCell.Tab.1.left" timestamp="1602624887197">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="147" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1602624887197" />
+    <state width="1237" height="147" key="GridCell.Tab.1.right" timestamp="1602624887197">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="147" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1602624887197" />
+    <state x="233" y="0" key="SettingsEditor" timestamp="1602680396761">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1602680396761" />
+    <state x="337" y="164" key="com.intellij.ide.util.TipDialog" timestamp="1602678900606">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="337" y="164" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1602678900606" />
+    <state x="211" y="76" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1602619788498">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="211" y="76" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1280.680@0.0.1280.680" timestamp="1602619788498" />
+    <state x="0" y="0" width="609" height="680" key="find.popup" timestamp="1602620086863">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="0" y="0" width="609" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1602620086863" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1602618365263">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1602618365263" />
+  </component>
+</project>
