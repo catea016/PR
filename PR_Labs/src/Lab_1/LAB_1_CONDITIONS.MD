@@ -17,5 +17,5 @@
 2. docker run -p5000:5000 alexburlacu/pr-server
 3. In order to run the program I have the class MultithreadingRequest that have the main method and need to run it.
    (this class is used to run the TCP server)
-4. In to access the server and to get the respond we have to enter in telnet port through command line
+4. In order to access the server and to get the respond we have to enter in telnet port through command line
    using the command: >> telnet localhost 5005
