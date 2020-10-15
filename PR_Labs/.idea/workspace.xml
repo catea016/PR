@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b8ed8ac-f2dc-4297-9c6e-a3d8eab378df" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Lab_1/LAB_1_CONDITIONS.MD" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lab_1/LAB_1_CONDITIONS.MD" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lab_1/MultithreadingRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lab_1/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lab_1/TCPServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lab_1/TCPServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +47,7 @@
       <recent name="C:\Users\User\IdeaProjects\PR_Labs\libs" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MultithreadingRequest">
+  <component name="RunManager">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Lab_1.Client" />
       <module name="PR_Labs" />
@@ -58,8 +61,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MultithreadingRequest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Lab_1.MultithreadingRequest" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Lab_1.Main" />
       <module name="PR_Labs" />
       <extension name="coverage">
         <pattern>
@@ -73,7 +76,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MultithreadingRequest" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Client" />
       </list>
     </recent_temporary>
@@ -104,6 +107,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="53" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1602754676142">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="53" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.680@0.0.1280.680" timestamp="1602754676142" />
     <state x="416" y="55" key="DetectedRootsChooserDialog" timestamp="1602500368121">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -112,22 +119,22 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="369" y="81" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1602618075464" />
-    <state width="1237" height="216" key="GridCell.Tab.0.bottom" timestamp="1602699634284">
+    <state width="1237" height="216" key="GridCell.Tab.0.bottom" timestamp="1602754557152">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="216" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602699634284" />
-    <state width="1237" height="216" key="GridCell.Tab.0.center" timestamp="1602699634283">
+    <state width="1237" height="216" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602754557152" />
+    <state width="1237" height="216" key="GridCell.Tab.0.center" timestamp="1602754557151">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="216" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1602699634283" />
-    <state width="1237" height="216" key="GridCell.Tab.0.left" timestamp="1602699634283">
+    <state width="1237" height="216" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1602754557151" />
+    <state width="1237" height="216" key="GridCell.Tab.0.left" timestamp="1602754557151">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="216" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1602699634283" />
-    <state width="1237" height="216" key="GridCell.Tab.0.right" timestamp="1602699634284">
+    <state width="1237" height="216" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1602754557151" />
+    <state width="1237" height="216" key="GridCell.Tab.0.right" timestamp="1602754557151">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="216" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1602699634283" />
+    <state width="1237" height="216" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1602754557151" />
     <state width="1237" height="147" key="GridCell.Tab.1.bottom" timestamp="1602624887197">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -144,10 +151,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="147" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1602624887197" />
-    <state x="233" y="0" key="SettingsEditor" timestamp="1602680396761">
+    <state x="233" y="0" key="SettingsEditor" timestamp="1602755042055">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1602680396761" />
+    <state x="233" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1602755042055" />
     <state x="337" y="164" key="com.intellij.ide.util.TipDialog" timestamp="1602678900606">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

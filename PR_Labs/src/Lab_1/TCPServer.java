@@ -11,12 +11,12 @@ class TCPServer {
     public void start(int port) {
         try {
             ParseJson parseJson = new ParseJson();
-            MultithreadingRequest multithreadingRequest = new MultithreadingRequest();
+            Main main = new Main();
             ServerSocket serverSocket = new ServerSocket(port);
             Socket clientSocket = serverSocket.accept();
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            ArrayList<String> arrayList = multithreadingRequest.getDataList();
+            ArrayList<String> arrayList = main.getDataList();
             ArrayList<String> output;
             String inputLine;
             boolean exit = true;

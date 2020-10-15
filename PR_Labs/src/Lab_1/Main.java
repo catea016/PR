@@ -5,7 +5,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class MultithreadingRequest {
+public class Main {
 
     private static ArrayList<String> links = new ArrayList<String>();
     private static final String initialURl = "http://localhost:5000/home";

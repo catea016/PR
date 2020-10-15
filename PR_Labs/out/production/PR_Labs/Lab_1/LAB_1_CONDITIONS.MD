@@ -15,9 +15,7 @@
 ### How to run:
 1. docker pull alexburlacu/pr-server
 2. docker run -p5000:5000 alexburlacu/pr-server
-3. In PR_Labs you can find the libs package where I stored the additional libraries I used for parsing data, and 
-   you need to configure it in the project (Ctrl+Shift+Alt+S)
-4. In order to run the program I have the class Main that have the main method and need to run it.
+3. In order to run the program I have the class MultithreadingRequest that have the main method and need to run it.
    (this class is used to run the TCP server)
-5. In order to access the server and to get the respond we have to enter in telnet port through command line
+4. In order to access the server and to get the respond we have to enter in telnet port through command line
    using the command: >> telnet localhost 5005
