@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b8ed8ac-f2dc-4297-9c6e-a3d8eab378df" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/lab1/CSVtoJSON.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lab1/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lab1/DataReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lab1/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lab1/Request.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lab1/Server.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lab1/XMLtoJSON.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lab1/YAMLtoJSON.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_gitignore.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PR_Labs/Lab_1/LAB_1_CONDITIONS.MD" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PR_Labs/Lab_1/LAB_1_CONDITIONS.MD" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PR_Labs/Lab_1/MultithreadingRequest$ThreadRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PR_Labs/Lab_1/MultithreadingRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PR_Labs/Lab_1/TCPServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PR_Labs/Lab_1/TCPServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lab_1/ConverterToJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lab_1/ConverterToJson.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +33,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Laboratoare_OOP" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -159,26 +147,26 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="416" y="55" key="DetectedRootsChooserDialog/0.0.1280.680@0.0.1280.680" timestamp="1602500368121" />
-    <state x="369" y="81" key="FileChooserDialogImpl" timestamp="1602618075464">
+    <state x="369" y="81" key="FileChooserDialogImpl" timestamp="1603268705416">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="369" y="81" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1602618075464" />
-    <state width="1237" height="223" key="GridCell.Tab.0.bottom" timestamp="1603268097843">
+    <state x="369" y="81" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1603268705416" />
+    <state width="1237" height="223" key="GridCell.Tab.0.bottom" timestamp="1603268198552">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="223" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1603268097843" />
-    <state width="1237" height="223" key="GridCell.Tab.0.center" timestamp="1603268097843">
+    <state width="1237" height="223" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1603268198552" />
+    <state width="1237" height="223" key="GridCell.Tab.0.center" timestamp="1603268198552">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="223" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1603268097843" />
-    <state width="1237" height="223" key="GridCell.Tab.0.left" timestamp="1603268097843">
+    <state width="1237" height="223" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1603268198552" />
+    <state width="1237" height="223" key="GridCell.Tab.0.left" timestamp="1603268198552">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="223" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1603268097843" />
-    <state width="1237" height="223" key="GridCell.Tab.0.right" timestamp="1603268097843">
+    <state width="1237" height="223" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1603268198552" />
+    <state width="1237" height="223" key="GridCell.Tab.0.right" timestamp="1603268198552">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="223" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1603268097843" />
+    <state width="1237" height="223" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1603268198552" />
     <state width="1237" height="147" key="GridCell.Tab.1.bottom" timestamp="1603042461393">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
