@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b8ed8ac-f2dc-4297-9c6e-a3d8eab378df" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/lab1/LAB1.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lab2/UDPClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lab2/UDPServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +34,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Laboratoare_OOP" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../SDTM" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -47,7 +48,7 @@
       <recent name="C:\Users\User\IdeaProjects\PR_Labs\libs" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client (1)">
+  <component name="RunManager" selected="Application.UDPClient">
     <configuration name="Client (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="lab1.Client" />
       <module name="PR_Labs" />
@@ -100,10 +101,37 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UDPClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lab2.UDPClient" />
+      <module name="PR_Labs" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lab2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UDPServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lab2.UDPServer" />
+      <module name="PR_Labs" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lab2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.UDPClient" />
+        <item itemvalue="Application.UDPServer" />
         <item itemvalue="Application.Client (1)" />
-        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Client" />
       </list>
@@ -147,26 +175,26 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="416" y="55" key="DetectedRootsChooserDialog/0.0.1280.680@0.0.1280.680" timestamp="1602500368121" />
-    <state x="369" y="81" key="FileChooserDialogImpl" timestamp="1603268705416">
+    <state x="369" y="81" key="FileChooserDialogImpl" timestamp="1604152828056">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="369" y="81" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1603268705416" />
-    <state width="1237" height="223" key="GridCell.Tab.0.bottom" timestamp="1603268198552">
+    <state x="369" y="81" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1604152828056" />
+    <state width="1237" height="124" key="GridCell.Tab.0.bottom" timestamp="1605286708441">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="223" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1603268198552" />
-    <state width="1237" height="223" key="GridCell.Tab.0.center" timestamp="1603268198552">
+    <state width="1237" height="124" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1605286708441" />
+    <state width="1237" height="124" key="GridCell.Tab.0.center" timestamp="1605286708441">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="223" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1603268198552" />
-    <state width="1237" height="223" key="GridCell.Tab.0.left" timestamp="1603268198552">
+    <state width="1237" height="124" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1605286708441" />
+    <state width="1237" height="124" key="GridCell.Tab.0.left" timestamp="1605286708441">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="223" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1603268198552" />
-    <state width="1237" height="223" key="GridCell.Tab.0.right" timestamp="1603268198552">
+    <state width="1237" height="124" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1605286708441" />
+    <state width="1237" height="124" key="GridCell.Tab.0.right" timestamp="1605286708441">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="223" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1603268198552" />
+    <state width="1237" height="124" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1605286708441" />
     <state width="1237" height="147" key="GridCell.Tab.1.bottom" timestamp="1603042461393">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -187,10 +215,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="233" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1603023693420" />
-    <state x="337" y="164" key="com.intellij.ide.util.TipDialog" timestamp="1603098434004">
+    <state x="337" y="164" key="com.intellij.ide.util.TipDialog" timestamp="1605348028888">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="337" y="164" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1603098434004" />
+    <state x="337" y="164" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1605348028888" />
     <state x="211" y="76" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1602619788498">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
