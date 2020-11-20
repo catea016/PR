@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b8ed8ac-f2dc-4297-9c6e-a3d8eab378df" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/libs/sun.misc.BASE64Decoder.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lab2/DiffieHelman.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lab2/ErrorChecking.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PR_Labs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PR_Labs.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PR_Labs/lab2/UDPClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PR_Labs/lab2/UDPClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PR_Labs/lab2/UDPServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PR_Labs/lab2/UDPServer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lab2/UDPClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab2/UDPClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lab2/UDPServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab2/UDPServer.java" afterDir="false" />
     </list>
@@ -55,7 +49,7 @@
       <recent name="lab1" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.UDPServer">
+  <component name="RunManager" selected="Application.UDPClient">
     <configuration name="Client (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="lab1.Client" />
       <module name="PR_Labs" />
@@ -190,22 +184,22 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="369" y="81" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1605462177711" />
-    <state width="1237" height="142" key="GridCell.Tab.0.bottom" timestamp="1605471259240">
+    <state width="1237" height="119" key="GridCell.Tab.0.bottom" timestamp="1605888109289">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="142" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1605471259240" />
-    <state width="1237" height="142" key="GridCell.Tab.0.center" timestamp="1605471259240">
+    <state width="1237" height="119" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1605888109289" />
+    <state width="1237" height="119" key="GridCell.Tab.0.center" timestamp="1605888109289">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="142" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1605471259240" />
-    <state width="1237" height="142" key="GridCell.Tab.0.left" timestamp="1605471259240">
+    <state width="1237" height="119" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1605888109289" />
+    <state width="1237" height="119" key="GridCell.Tab.0.left" timestamp="1605888109288">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="142" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1605471259240" />
-    <state width="1237" height="142" key="GridCell.Tab.0.right" timestamp="1605471259240">
+    <state width="1237" height="119" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1605888109288" />
+    <state width="1237" height="119" key="GridCell.Tab.0.right" timestamp="1605888109289">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="142" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1605471259240" />
+    <state width="1237" height="119" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1605888109289" />
     <state width="1237" height="147" key="GridCell.Tab.1.bottom" timestamp="1603042461393">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -226,10 +220,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="233" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1605462192398" />
-    <state x="337" y="164" key="com.intellij.ide.util.TipDialog" timestamp="1605450357108">
+    <state x="337" y="164" key="com.intellij.ide.util.TipDialog" timestamp="1605884852196">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="337" y="164" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1605450357108" />
+    <state x="337" y="164" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1605884852196" />
     <state x="211" y="76" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1602619788498">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

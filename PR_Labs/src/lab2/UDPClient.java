@@ -26,21 +26,24 @@ public class UDPClient {
       storing them in the sending buffer */
             String sendingData = dh.encrypt("Hello from UDP client");
             sendingDataBuffer = sendingData.getBytes();
-
+            ErrorChecking checksum = new ErrorChecking();
+            checksum.getChecksumCRC32(sendingDataBuffer);
             // Creating a UDP packet
             DatagramPacket sendingPacket = new DatagramPacket(sendingDataBuffer, sendingDataBuffer.length, IPAddress, port);
-
             clientSocket.send(sendingPacket);
 
             // Get the server response .i.e. capitalized sentence
             DatagramPacket receivingPacket = new DatagramPacket(receivingDataBuffer, receivingDataBuffer.length);
             clientSocket.receive(receivingPacket);
+            String receivedData;
+            receivedData = new String(receivingDataBuffer, 0, receivingPacket.getLength());
 
+            checksum.getChecksumCRC32(receivedData.getBytes());
             // Printing the received data
-            String receivedData = new String(receivingPacket.getData());
-            System.out.println("Encrypted data from the server: " + receivedData);
+            //String receivedData = new String(receivingPacket.getData());
+           // System.out.println("Encrypted data from the server: " + receivedData);
             String receivedDataDec = dh.decrypt(receivedData);
-            System.out.println("Decrypted data from the server: " + receivedDataDec);
+            System.out.println("Data from the server: " + receivedDataDec);
             clientSocket.close();
         } catch (SocketException e) {
             e.printStackTrace();

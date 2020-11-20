@@ -26,22 +26,23 @@ public class UDPServer {
 
             // Receive data from the client and store in inputPacket
             serverSocket.receive(inputPacket);
+            String receivedData;
+            receivedData = new String(receivingDataBuffer, 0, inputPacket.getLength());
 
+            ErrorChecking checksum = new ErrorChecking();
+            checksum.getChecksumCRC32(receivedData.getBytes());
             // Printing out the client sent data
+            //System.out.println(msg);
 
-            String receivedData = new String(inputPacket.getData());
-            System.out.println("Encrypted data from the client: " + receivedData);
+            //String receivedData = new String(inputPacket.getData());
+            //System.out.println("Encrypted data from the client: " + receivedData);
             String receivedDataDec = dh.decrypt(receivedData);
-            System.out.println("Decrypted data from the client: " + receivedDataDec);
+            System.out.println("Data from the client: " + receivedDataDec);
 
-            /*
-             * Convert client sent data string to upper case,
-             * Convert it to bytes
-             *  and store it in the corresponding buffer. */
-            ErrorChecking errorChecking = new ErrorChecking();
-            errorChecking.getChecksumCRC32(sendingDataBuffer);
+
             String sendingData = dh.encrypt("Hello from UDP server");
             sendingDataBuffer = sendingData.getBytes();
+            checksum.getChecksumCRC32(sendingDataBuffer);
 
             // Obtain client's IP address and the port
             InetAddress senderAddress = inputPacket.getAddress();
