@@ -14,6 +14,7 @@ public class UDPClient {
     public static void main(String[] args) throws IOException {
         try {
             DatagramSocket clientSocket = new DatagramSocket();
+            clientSocket.setSoTimeout(3000);
             // Get the IP address of the server
             InetAddress IPAddress = InetAddress.getByName("localhost");
             DiffieHelman dh = new DiffieHelman();

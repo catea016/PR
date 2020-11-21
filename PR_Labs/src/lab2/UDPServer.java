@@ -12,8 +12,8 @@ public class UDPServer {
     public static void main(String[] args) throws Exception {
         try {
             // Instantiate a new DatagramSocket to receive responses from the client
-            //DiffieHelman dh = new DiffieHelman();
             DatagramSocket serverSocket = new DatagramSocket(port);
+
             DiffieHelman dh = new DiffieHelman();
             dh.setReceiverPublicKey(dh.getPublicKey());
             byte[] receivingDataBuffer = new byte[65507];
@@ -39,8 +39,8 @@ public class UDPServer {
             String receivedDataDec = dh.decrypt(receivedData);
             System.out.println("Data from the client: " + receivedDataDec);
 
-
-            String sendingData = dh.encrypt("Hello from UDP server");
+            // transform received data to upper case then encrypt and send to the client as a response
+            String sendingData = dh.encrypt(receivedDataDec.toUpperCase());
             sendingDataBuffer = sendingData.getBytes();
             checksum.getChecksumCRC32(sendingDataBuffer);
 
