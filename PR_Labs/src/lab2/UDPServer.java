@@ -31,8 +31,6 @@ public class UDPServer {
 
             ErrorChecking checksum = new ErrorChecking();
             checksum.getChecksumCRC32(receivedData.getBytes());
-            // Printing out the client sent data
-            //System.out.println(msg);
 
             //String receivedData = new String(inputPacket.getData());
             //System.out.println("Encrypted data from the client: " + receivedData);
