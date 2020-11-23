@@ -82,7 +82,7 @@ public class DiffieHelman {
     private static String secretKey = "AAHSJKJ#$%&(cfsgh1234";
     private static String salt = "jhddddd16712%#@";
 
-    public static String encrypt(String strToEncrypt) {
+    public static byte[] encrypt(byte[] strToEncrypt) {
         try {
             byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
             IvParameterSpec ivspec = new IvParameterSpec(iv);
@@ -94,14 +94,14 @@ public class DiffieHelman {
 
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivspec);
-            return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
+            return Base64.getEncoder().encode(cipher.doFinal(strToEncrypt));
         } catch (Exception e) {
             System.out.println("Error while encrypting: " + e.toString());
         }
         return null;
     }
 
-    public static String decrypt(String strToDecrypt) {
+    public static byte[] decrypt(byte[] strToDecrypt) {
         try {
             byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
             IvParameterSpec ivspec = new IvParameterSpec(iv);
@@ -113,7 +113,8 @@ public class DiffieHelman {
 
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
             cipher.init(Cipher.DECRYPT_MODE, secretKey, ivspec);
-            return new String(cipher.doFinal(Base64.getMimeDecoder().decode(strToDecrypt)));
+            byte[] decrypted = cipher.doFinal(Base64.getMimeDecoder().decode(strToDecrypt));
+            return decrypted;
         } catch (Exception e) {
             System.out.println("Error while decrypting: " + e.toString());
         }

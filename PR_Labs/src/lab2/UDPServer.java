@@ -1,61 +1,194 @@
 package lab2;
 
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
+import java.io.*;
+import java.net.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UDPServer {
     // Server UDP socket runs at this port
     public final static int port = 5005;
+    static public int bufSize = 512;
+    static DiffieHelman dh = new DiffieHelman();
 
-    public static void main(String[] args) throws Exception {
+    static public void main(String args[]) {
+
+        DatagramSocket serverSocket;
+
         try {
-            // Instantiate a new DatagramSocket to receive responses from the client
-            DatagramSocket serverSocket = new DatagramSocket(port);
-
-            DiffieHelman dh = new DiffieHelman();
-            dh.setReceiverPublicKey(dh.getPublicKey());
-            byte[] receivingDataBuffer = new byte[65507];
-            byte[] sendingDataBuffer = new byte[65507];
-
-      /* Instantiate a UDP packet to store the
-      client data using the buffer for receiving data*/
-            DatagramPacket inputPacket = new DatagramPacket(receivingDataBuffer, receivingDataBuffer.length);
-            System.out.println("Waiting for a client to connect...");
-
-            // Receive data from the client and store in inputPacket
-            serverSocket.receive(inputPacket);
-            String receivedData;
-            receivedData = new String(receivingDataBuffer, 0, inputPacket.getLength());
-
-            ErrorChecking checksum = new ErrorChecking();
-            checksum.getChecksumCRC32(receivedData.getBytes());
-
-            //String receivedData = new String(inputPacket.getData());
-            //System.out.println("Encrypted data from the client: " + receivedData);
-            String receivedDataDec = dh.decrypt(receivedData);
-            System.out.println("Data from the client: " + receivedDataDec);
-
-            // transform received data to upper case then encrypt and send to the client as a response
-            String sendingData = dh.encrypt(receivedDataDec.toUpperCase());
-            sendingDataBuffer = sendingData.getBytes();
-            checksum.getChecksumCRC32(sendingDataBuffer);
-
-            // Obtain client's IP address and the port
-            InetAddress senderAddress = inputPacket.getAddress();
-            int senderPort = inputPacket.getPort();
-
-            // Create new UDP packet with data to send to the client
-            DatagramPacket outputPacket = new DatagramPacket(
-                    sendingDataBuffer, sendingDataBuffer.length,
-                    senderAddress, senderPort
-            );
-            // Send the created packet to client
-            serverSocket.send(outputPacket);
-            serverSocket.close();
-        } catch (SocketException e) {
-            e.printStackTrace();
+            serverSocket = new DatagramSocket(port);
+        } catch (SocketException se) {
+            System.err.println("Cannot create socket with port " + port);
+            return;
         }
+
+        // create DatagramPacket object for receiving data:
+        DatagramPacket receivedPacket = new DatagramPacket(new byte[bufSize], bufSize);
+
+        Map<InetAddress, Integer> openSessions = new HashMap<>();
+        dh.setReceiverPublicKey(dh.getPublicKey());
+
+        while (true) {
+            try {
+                receivedPacket.setLength(bufSize);
+                serverSocket.receive(receivedPacket);
+                System.out.println("message from : " + receivedPacket.getAddress().getHostAddress());
+                byte[] receivedData = receivedPacket.getData();
+                byte[] decReceivedData = dh.decrypt(receivedData);
+                ErrorChecking checksum = new ErrorChecking();
+                checksum.getChecksumCRC32(decReceivedData);
+
+                ByteArrayInputStream in = new ByteArrayInputStream(decReceivedData);
+                ObjectInputStream is = new ObjectInputStream(in);
+                AtmClient atmMessage = (AtmClient) is.readObject();
+                System.out.println("Message received.");
+
+                int requestType = atmMessage.getRequest();
+                Integer value = openSessions.get(receivedPacket.getAddress());
+
+                switch (requestType) {
+
+                    case 0: //Login
+                        if(value != null) {
+                            sendRequestResponse(6, -1, receivedPacket.getAddress(), receivedPacket.getPort());
+                            System.out.println("This address already has an account signed in!");
+                            break;
+                        }
+                        else {
+                            int count = ClientDatabase.accounts.size();
+                            Boolean foundAccount = false;
+                            for (int i = 0; i <= count; i++) {
+                                if (ClientDatabase.accounts.get(i).getAccountNum() == atmMessage.getAccountNumber()) {
+                                    if (ClientDatabase.accounts.get(i).getPin() == atmMessage.getPin()) {
+                                        openSessions.put(receivedPacket.getAddress(), atmMessage.getAccountNumber());
+                                        sendRequestResponse(5, -1, receivedPacket.getAddress(), receivedPacket.getPort());
+                                        System.out.println( "Client has successfully log with account nr. " + atmMessage.getAccountNumber());
+                                        foundAccount = true;
+                                        break;
+                                    } else {
+                                        sendRequestResponse(6, -1, receivedPacket.getAddress(), receivedPacket.getPort());
+                                        System.out.println("Wrong PIN for account nr. " + atmMessage.getAccountNumber());
+                                        break;
+                                    }
+                                }
+                            }
+                            if (foundAccount == false) {
+                                sendRequestResponse(6, -1, receivedPacket.getAddress(), receivedPacket.getPort());
+                                System.out.println("The account number #" + atmMessage.getAccountNumber() + " does not exist!");
+                                break;
+                            }
+                            break;
+                        }
+
+                    case 1: //Balance
+                        if (value != null) {
+                            for (Account account : ClientDatabase.accounts) {
+                                if (account.getAccountNum() == value) {
+                                    sendRequestResponse(5, account.getBalance(), receivedPacket.getAddress(), receivedPacket.getPort());
+                                    System.out.println( value + "'s account balance is " + account.getBalance());
+                                    break;
+                                }
+                            }
+
+                        } else {
+                            sendRequestResponse(6, -1, receivedPacket.getAddress(), receivedPacket.getPort());
+                            System.out.println("Not Logged In!");
+
+                        }
+                        break;
+                    case 2: //Withdraw
+                        if (value != null) {
+                            for (Account account : ClientDatabase.accounts) {
+                                if (account.getAccountNum() == value) {
+                                    if (account.getBalance() > atmMessage.getAmount()) {
+                                        account.setBalance((account.getBalance() - atmMessage.getAmount()));
+                                        sendRequestResponse(5, account.getBalance(), receivedPacket.getAddress(), receivedPacket.getPort());
+                                        System.out.println("After the withdraw, account " + value + "'s balance is " + account.getBalance());
+                                        break;
+                                    }
+                                    else {
+                                        sendRequestResponse(6, -1, receivedPacket.getAddress(), receivedPacket.getPort());
+                                        System.out.println("Not enough resources for this withdrawal!");
+                                        break;
+                                    }
+                                }
+                                else {
+                                    System.out.println("Account not found!");
+                                }
+                            }
+                            break;
+                        } else {
+                            sendRequestResponse(6, -1, receivedPacket.getAddress(), receivedPacket.getPort());
+                            System.out.println("Not Logged In!");
+                            break;
+                        }
+                    case 3: //Deposit
+                        if (value != null) {
+                            for (Account account : ClientDatabase.accounts) {
+                                if (account.getAccountNum() == value) {
+                                    account.setBalance((account.getBalance() + atmMessage.getAmount()));
+                                    sendRequestResponse(5, account.getBalance(), receivedPacket.getAddress(), receivedPacket.getPort());
+                                    System.out.println("After the deposit, account #" + value + "'s balance is " + account.getBalance());
+                                    break;
+                                }
+                                else {
+                                    sendRequestResponse(6, -1, receivedPacket.getAddress(), receivedPacket.getPort());
+                                    System.out.println("Account not found!");
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                        else {
+                            sendRequestResponse(6, -1, receivedPacket.getAddress(), receivedPacket.getPort());
+                            System.out.println("Not Logged In!");
+                            break;
+                        }
+
+                    case 4: //Logout
+                        if (value != null) {
+                            openSessions.remove(receivedPacket.getAddress());
+                            sendRequestResponse(5, -1, receivedPacket.getAddress(), receivedPacket.getPort());
+                            System.out.println("Account nr." + value + "(" + receivedPacket.getAddress() + ") has logged out of their session!");
+                            break;
+                        } else {
+                            sendRequestResponse(6, -1, receivedPacket.getAddress(), receivedPacket.getPort());
+                            System.out.println("Not Logged In!");
+                            break;
+                        }
+
+                    default:
+                        sendRequestResponse(6, -1, receivedPacket.getAddress(), receivedPacket.getPort());
+                        System.out.println("Error. Not valid request :(");
+                        break;
+                }
+
+                value = null;
+
+            } catch (SocketTimeoutException ste) {    // receive() timed out
+                System.err.println("Response timed out!");
+            } catch (Exception ioe) {                // should never happen!
+                System.err.println("Bad receive");
+                ioe.printStackTrace();
+            }
+
+        }
+
     }
+
+    static public void sendRequestResponse(int responseType, int responseAmount, InetAddress clientAddress, int clientPort) throws IOException {
+
+        DatagramSocket socket;
+        socket = new DatagramSocket();
+        AtmClient response = new AtmClient(responseType, -1, -1, responseAmount);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ObjectOutputStream os = new ObjectOutputStream(outputStream);
+        os.writeObject(response);
+        byte[] sendingData = outputStream.toByteArray();
+        ErrorChecking checksum = new ErrorChecking();
+        checksum.getChecksumCRC32(sendingData);
+        DatagramPacket sendingPacket = new DatagramPacket(sendingData, sendingData.length, clientAddress, clientPort);
+        socket.send(sendingPacket);
+    }
+
 }
