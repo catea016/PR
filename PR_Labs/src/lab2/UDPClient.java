@@ -7,8 +7,7 @@ import java.net.InetAddress;
 import java.util.Scanner;
 
 public class UDPClient extends AtmClient {
-    /* The server port to which
-    the client socket is going to connect */
+
     public final static int port = 5005;
     private static final int TIMEOUT = 3000;   // Resend timeout (milliseconds)
     private static final int MAXTRIES = 5;     // Maximum number of retransmissions
@@ -17,7 +16,7 @@ public class UDPClient extends AtmClient {
 
     public UDPClient() {}
 
-    public void createSocket() throws IOException, ClassNotFoundException {
+    public void createSocket(){
 
         try {
             Scanner input = new Scanner(System.in);
@@ -45,14 +44,14 @@ public class UDPClient extends AtmClient {
                         System.out.println("Enter account pin");
                         pin = input.nextInt();
                         atmClient = new AtmClient(AccountNumber, pin);
-                        System.out.println(atmClient.toString());
+                        System.out.println(atmClient.requestState());
                         break;
 
                     case 1: // 1: balance
                         atmClient.setClientRequest("Balance");
                         System.out.println("Asking server for balance");
                         atmClient = new AtmClient(1, -1, -1, -1);
-                        System.out.println(atmClient.toString());
+                        System.out.println(atmClient.requestState());
                         break;
 
                     case 2: // 2: withdraw
@@ -61,7 +60,7 @@ public class UDPClient extends AtmClient {
                         amount = input.nextInt();
                         System.out.println("Withdrawing amount: " + amount);
                         atmClient = new AtmClient(2, -1, -1, amount);
-                        System.out.println(atmClient.toString());
+                        System.out.println(atmClient.requestState());
                         break;
 
                     case 3: // 3: deposit
@@ -70,14 +69,14 @@ public class UDPClient extends AtmClient {
                         amount = input.nextInt();
                         System.out.println("Requesting amount: " + amount + " money to be deposited into your account.");
                         atmClient = new AtmClient(3, -1, -1, amount);
-                        System.out.println(atmClient.toString());
+                        System.out.println(atmClient.requestState());
                         break;
 
                     case 4: // 4: exit
                         atmClient.setClientRequest("Exit");
                         atmClient = new AtmClient(4, -1, -1, -1);
                         System.out.println("Goodbye!");
-                        System.out.println(atmClient.toString());
+                        System.out.println(atmClient.requestState());
                         break;
 
                     default:
@@ -85,7 +84,7 @@ public class UDPClient extends AtmClient {
                         break;
                 }
 
-                /* below is to send the client object*/
+                // send the client object
                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
                 ObjectOutputStream os = new ObjectOutputStream(outputStream);
 
@@ -107,16 +106,16 @@ public class UDPClient extends AtmClient {
                 int tries = 0;
                 boolean receivedResponse = false;
                 do {
-                    clientSocket.send(sendingPacket);          // Send the packet to server
+                    clientSocket.send(sendingPacket);
                     try {
-                        clientSocket.receive(receivingPacket);  // waiting reply from server
+                        clientSocket.receive(receivingPacket);
                         if (!receivingPacket.getAddress().equals(IPAddress)) {// Check source
                             throw new IOException("Received packet from an unknown source");
                         }else {
                             System.out.println("Message received from: " + sendingPacket.getAddress().getHostAddress());
                         }
                         receivedResponse = true;
-                    } catch (InterruptedIOException e) {  // We did not get anything
+                    } catch (InterruptedIOException e) {  // in case we did not get anything
                         tries += 1;
                         System.out.println("Timed out, " + (MAXTRIES - tries) + " more tries...");
                     }
@@ -126,13 +125,13 @@ public class UDPClient extends AtmClient {
                     checksum.getChecksumCRC32(receivedData);
                     ByteArrayInputStream in = new ByteArrayInputStream(receivedData);
                     ObjectInputStream inputStream = new ObjectInputStream(in);
-                    AtmClient atmMessage = (AtmClient) inputStream.readObject(); // reads message
+                    AtmClient atmMessage = (AtmClient) inputStream.readObject();
                     switch (atmMessage.getRequest()) {
                         case 5:
                             if(Request == 0){
                                 System.out.println("Successfully logged in. " + "\n" + " 0: login " + "\n" +" 1: balance" + "\n"+" 2: withdraw" + "\n" + " 3: deposit" + "\n" + " 4: exit");
                             }
-                            else if (Request == 1){ // balance check
+                            else if (Request == 1){ // balance
                                 System.out.println("Successful: Account balance is " + atmMessage.getAmount() + ".");
                                 atmMessage.setBalance(atmMessage.getAmount());
                             }else if ( Request == 2){ // withdraw

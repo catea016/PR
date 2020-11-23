@@ -50,35 +50,6 @@ public class DiffieHelman {
         }
     }
 
-    /*    public String encrypt(String msg) {
-            try {
-                Base64.Encoder encoder = Base64.getEncoder();
-                Key secretKey = generateKey();
-                Cipher c = Cipher.getInstance(ALGO);
-                c.init(Cipher.ENCRYPT_MODE, secretKey);
-                byte[] encVal = c.doFinal(msg.getBytes("UTF-8"));
-                return new String(encoder.encode(encVal));
-            } catch (BadPaddingException | InvalidKeyException | NoSuchPaddingException | IllegalBlockSizeException | NoSuchAlgorithmException | UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-            return msg;
-        }
-
-        public String decrypt(String encryptedData) {
-            try {
-                Base64.Decoder decoder = Base64.getDecoder();
-                Key secretKey = generateKey();
-                Cipher c = Cipher.getInstance(ALGO);
-                c.init(Cipher.DECRYPT_MODE, secretKey);
-                byte[] decodedValue = Base64.getDecoder().decode(encryptedData.getBytes());
-                byte[] decValue = c.doFinal(decodedValue);
-                return new String(decValue);
-            } catch (BadPaddingException | InvalidKeyException | NoSuchPaddingException | IllegalBlockSizeException | NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            }
-            return encryptedData;
-        }*/
-
     private static String secretKey = "AAHSJKJ#$%&(cfsgh1234";
     private static String salt = "jhddddd16712%#@";
 

@@ -1,7 +1,5 @@
 package lab2;
 
-//import example.UDPSocketClient;
-
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -28,7 +26,7 @@ public class AtmClient implements Serializable {
         this.amount = amount;
     }
 
-    // setters
+
     public void setAccountNumber(int AccountNumber) {
         this.AccountNumber = AccountNumber;
     }
@@ -53,7 +51,7 @@ public class AtmClient implements Serializable {
         this.clientRequest = clientRequest;
     }
 
-    // getters
+
 
     public int getAccountNumber() {
         return AccountNumber;
@@ -75,8 +73,8 @@ public class AtmClient implements Serializable {
         return balance;
     }
 
-    @Override
-    public String toString() {
+
+    public String requestState() {
         return "ATM client: Request to Server: " + getRequest() + " \n";
     }
 
