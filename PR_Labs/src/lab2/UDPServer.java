@@ -17,6 +17,7 @@ public class UDPServer {
 
         try {
             serverSocket = new DatagramSocket(port);
+            System.out.println("Waiting for a client ... ");
         } catch (SocketException se) {
             System.err.println("Cannot create socket with port " + port);
             return;
@@ -32,7 +33,7 @@ public class UDPServer {
             try {
                 receivedPacket.setLength(bufSize);
                 serverSocket.receive(receivedPacket);
-                System.out.println("message from : " + receivedPacket.getAddress().getHostAddress());
+                System.out.println("Received message from : " + receivedPacket.getAddress().getHostAddress());
                 byte[] receivedData = receivedPacket.getData();
                 byte[] decReceivedData = dh.decrypt(receivedData);
                 ErrorChecking checksum = new ErrorChecking();
@@ -41,8 +42,6 @@ public class UDPServer {
                 ByteArrayInputStream in = new ByteArrayInputStream(decReceivedData);
                 ObjectInputStream is = new ObjectInputStream(in);
                 AtmClient atmMessage = (AtmClient) is.readObject();
-                System.out.println("Message received.");
-
                 int requestType = atmMessage.getRequest();
                 Integer value = openSessions.get(receivedPacket.getAddress());
 

@@ -96,7 +96,6 @@ public class UDPClient extends AtmClient {
                 byte[] encSendingData = dh.encrypt(sendingData);
                 ErrorChecking checksum = new ErrorChecking();
                 checksum.getChecksumCRC32(encSendingData);
-                System.out.println(encSendingData);
 
                 DatagramPacket sendingPacket = new DatagramPacket(encSendingData, encSendingData.length, IPAddress, port);
 
@@ -104,7 +103,6 @@ public class UDPClient extends AtmClient {
                 DatagramPacket receivingPacket = new DatagramPacket(receivingDataBuffer, receivingDataBuffer.length);
 
                 byte[] receivedData = receivingPacket.getData();
-                byte[] decReceivedData = dh.decrypt(receivedData);
 
                 int tries = 0;
                 boolean receivedResponse = false;
@@ -129,7 +127,6 @@ public class UDPClient extends AtmClient {
                     ByteArrayInputStream in = new ByteArrayInputStream(receivedData);
                     ObjectInputStream inputStream = new ObjectInputStream(in);
                     AtmClient atmMessage = (AtmClient) inputStream.readObject(); // reads message
-                    System.out.println("Message received "); // prints message
                     switch (atmMessage.getRequest()) {
                         case 5:
                             if(Request == 0){
