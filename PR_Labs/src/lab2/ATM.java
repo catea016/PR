@@ -1,9 +1,10 @@
 package lab2;
 
-import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 
-public class AtmClient implements Serializable {
+public class ATM implements Serializable {
+
 
     public int AccountNumber; // 6 numbers
     public int pin; // 4 numbers
@@ -12,14 +13,30 @@ public class AtmClient implements Serializable {
     private int balance;
     private String clientRequest;
 
-    public AtmClient() {
+    static BankAccount bankAccount1 = new BankAccount(000001, 1111, 5000);
+    static BankAccount bankAccount2 = new BankAccount(000002, 2222, 7000);
+    static BankAccount bankAccount3 = new BankAccount(000003, 3333, 3000);
+    static BankAccount bankAccount4 = new BankAccount(000004, 4444, 10000);
+    static BankAccount bankAccount5 = new BankAccount(000005, 5555, 2000);
+
+    static ArrayList<BankAccount> bankAccounts = new ArrayList<>();
+
+    static {
+        bankAccounts.add(bankAccount1);
+        bankAccounts.add(bankAccount2);
+        bankAccounts.add(bankAccount3);
+        bankAccounts.add(bankAccount4);
+        bankAccounts.add(bankAccount5);
     }
 
-    public AtmClient(int AccountNumber, int pin) {
+    public ATM() {
+    }
+
+    public ATM(int AccountNumber, int pin) {
         this(0, AccountNumber, pin, -1);
     }
 
-    public AtmClient(int Request, int AccountNumber, int pin, int amount) {
+    public ATM(int Request, int AccountNumber, int pin, int amount) {
         this.AccountNumber = AccountNumber;
         this.pin = pin;
         this.Request = Request;
@@ -52,7 +69,6 @@ public class AtmClient implements Serializable {
     }
 
 
-
     public int getAccountNumber() {
         return AccountNumber;
     }
@@ -72,17 +88,5 @@ public class AtmClient implements Serializable {
     public int getBalance() {
         return balance;
     }
-
-
-    public String requestState() {
-        return "ATM client: Request to Server: " + getRequest() + " \n";
-    }
-
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        UDPClient udp = new UDPClient();
-        udp.createSocket();
-
-    }
-
 
 }

@@ -1,12 +1,12 @@
 package lab2;
 
-public class Account {
+public class BankAccount {
     
     private int accountNum;
     private int pin;
     private int balance;
 
-    public Account(int accountNum, int pin, int balance) {
+    public BankAccount(int accountNum, int pin, int balance) {
         this.accountNum = accountNum;
         this.pin = pin;
         this.balance = balance;

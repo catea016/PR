@@ -9,7 +9,7 @@ public class UDPServer {
     // Server UDP socket runs at this port
     public final static int port = 5005;
     static public int bufSize = 512;
-    static DiffieHelman dh = new DiffieHelman();
+    /*static DiffieHelman dh = new DiffieHelman();*/
 
     static public void main(String args[]) {
 
@@ -17,7 +17,7 @@ public class UDPServer {
 
         try {
             serverSocket = new DatagramSocket(port);
-            System.out.println("Waiting for a client ... ");
+            System.out.println("Waiting for a client to connect ... ");
         } catch (SocketException se) {
             System.err.println("Cannot create socket with port " + port);
             return;
@@ -27,13 +27,14 @@ public class UDPServer {
         DatagramPacket receivedPacket = new DatagramPacket(new byte[bufSize], bufSize);
 
         Map<InetAddress, Integer> openSessions = new HashMap<>();
+        DiffieHelman dh = new DiffieHelman();
         dh.setReceiverPublicKey(dh.getPublicKey());
 
         while (true) {
             try {
                 receivedPacket.setLength(bufSize);
                 serverSocket.receive(receivedPacket);
-                System.out.println("Received message from : " + receivedPacket.getAddress().getHostAddress());
+                //System.out.println("Received message from : " + receivedPacket.getAddress().getHostAddress());
                 byte[] receivedData = receivedPacket.getData();
                 byte[] decReceivedData = dh.decrypt(receivedData);
                 ErrorChecking checksum = new ErrorChecking();
@@ -41,39 +42,34 @@ public class UDPServer {
 
                 ByteArrayInputStream in = new ByteArrayInputStream(decReceivedData);
                 ObjectInputStream is = new ObjectInputStream(in);
-                AtmClient atmMessage = (AtmClient) is.readObject();
-                int requestType = atmMessage.getRequest();
+                ATM atm = (ATM) is.readObject();
+                int requestType = atm.getRequest();
                 Integer value = openSessions.get(receivedPacket.getAddress());
 
                 switch (requestType) {
 
                     case 0: //Login
-                        if(value != null) {
+                        if (value != null) {
                             sendRequestResponse(6, -1, receivedPacket.getAddress(), receivedPacket.getPort());
-                            System.out.println("This address already has an account signed in!");
                             break;
-                        }
-                        else {
-                            int count = ClientDatabase.accounts.size();
+                        } else {
+                            int count = atm.bankAccounts.size();
                             Boolean foundAccount = false;
                             for (int i = 0; i <= count; i++) {
-                                if (ClientDatabase.accounts.get(i).getAccountNum() == atmMessage.getAccountNumber()) {
-                                    if (ClientDatabase.accounts.get(i).getPin() == atmMessage.getPin()) {
-                                        openSessions.put(receivedPacket.getAddress(), atmMessage.getAccountNumber());
+                                if (ATM.bankAccounts.get(i).getAccountNum() == atm.getAccountNumber()) {
+                                    if (atm.bankAccounts.get(i).getPin() == atm.getPin()) {
+                                        openSessions.put(receivedPacket.getAddress(), atm.getAccountNumber());
                                         sendRequestResponse(5, -1, receivedPacket.getAddress(), receivedPacket.getPort());
-                                        System.out.println( "Client has successfully log with account nr. " + atmMessage.getAccountNumber());
                                         foundAccount = true;
                                         break;
                                     } else {
                                         sendRequestResponse(6, -1, receivedPacket.getAddress(), receivedPacket.getPort());
-                                        System.out.println("Wrong PIN for account nr. " + atmMessage.getAccountNumber());
                                         break;
                                     }
                                 }
                             }
                             if (foundAccount == false) {
                                 sendRequestResponse(6, -1, receivedPacket.getAddress(), receivedPacket.getPort());
-                                System.out.println("The account number #" + atmMessage.getAccountNumber() + " does not exist!");
                                 break;
                             }
                             break;
@@ -81,66 +77,54 @@ public class UDPServer {
 
                     case 1: //Balance
                         if (value != null) {
-                            for (Account account : ClientDatabase.accounts) {
-                                if (account.getAccountNum() == value) {
-                                    sendRequestResponse(5, account.getBalance(), receivedPacket.getAddress(), receivedPacket.getPort());
-                                    System.out.println( value + "'s account balance is " + account.getBalance());
+                            for (BankAccount bankAccount : atm.bankAccounts) {
+                                if (bankAccount.getAccountNum() == value) {
+                                    sendRequestResponse(5, bankAccount.getBalance(), receivedPacket.getAddress(), receivedPacket.getPort());
                                     break;
                                 }
                             }
 
                         } else {
                             sendRequestResponse(6, -1, receivedPacket.getAddress(), receivedPacket.getPort());
-                            System.out.println("Not Logged In!");
 
                         }
                         break;
                     case 2: //Withdraw
                         if (value != null) {
-                            for (Account account : ClientDatabase.accounts) {
-                                if (account.getAccountNum() == value) {
-                                    if (account.getBalance() > atmMessage.getAmount()) {
-                                        account.setBalance((account.getBalance() - atmMessage.getAmount()));
-                                        sendRequestResponse(5, account.getBalance(), receivedPacket.getAddress(), receivedPacket.getPort());
-                                        System.out.println("After the withdraw, account " + value + "'s balance is " + account.getBalance());
+                            for (BankAccount bankAccount : atm.bankAccounts) {
+                                if (bankAccount.getAccountNum() == value) {
+                                    if (bankAccount.getBalance() > atm.getAmount()) {
+                                        bankAccount.setBalance((bankAccount.getBalance() - atm.getAmount()));
+                                        sendRequestResponse(5, bankAccount.getBalance(), receivedPacket.getAddress(), receivedPacket.getPort());
                                         break;
-                                    }
-                                    else {
+                                    } else {
                                         sendRequestResponse(6, -1, receivedPacket.getAddress(), receivedPacket.getPort());
-                                        System.out.println("Not enough resources for this withdrawal!");
                                         break;
                                     }
-                                }
-                                else {
-                                    System.out.println("Account not found!");
+                                } else {
+                                    //System.out.println("Account not found !");
                                 }
                             }
                             break;
                         } else {
                             sendRequestResponse(6, -1, receivedPacket.getAddress(), receivedPacket.getPort());
-                            System.out.println("Not Logged In!");
                             break;
                         }
                     case 3: //Deposit
                         if (value != null) {
-                            for (Account account : ClientDatabase.accounts) {
-                                if (account.getAccountNum() == value) {
-                                    account.setBalance((account.getBalance() + atmMessage.getAmount()));
-                                    sendRequestResponse(5, account.getBalance(), receivedPacket.getAddress(), receivedPacket.getPort());
-                                    System.out.println("After the deposit, account #" + value + "'s balance is " + account.getBalance());
+                            for (BankAccount bankAccount : atm.bankAccounts) {
+                                if (bankAccount.getAccountNum() == value) {
+                                    bankAccount.setBalance((bankAccount.getBalance() + atm.getAmount()));
+                                    sendRequestResponse(5, bankAccount.getBalance(), receivedPacket.getAddress(), receivedPacket.getPort());
                                     break;
-                                }
-                                else {
+                                } else {
                                     sendRequestResponse(6, -1, receivedPacket.getAddress(), receivedPacket.getPort());
-                                    System.out.println("Account not found!");
                                     break;
                                 }
                             }
                             break;
-                        }
-                        else {
+                        } else {
                             sendRequestResponse(6, -1, receivedPacket.getAddress(), receivedPacket.getPort());
-                            System.out.println("Not Logged In!");
                             break;
                         }
 
@@ -148,17 +132,14 @@ public class UDPServer {
                         if (value != null) {
                             openSessions.remove(receivedPacket.getAddress());
                             sendRequestResponse(5, -1, receivedPacket.getAddress(), receivedPacket.getPort());
-                            System.out.println("Account nr." + value + "(" + receivedPacket.getAddress() + ") has logged out of their session!");
                             break;
                         } else {
                             sendRequestResponse(6, -1, receivedPacket.getAddress(), receivedPacket.getPort());
-                            System.out.println("Not Logged In!");
                             break;
                         }
 
                     default:
                         sendRequestResponse(6, -1, receivedPacket.getAddress(), receivedPacket.getPort());
-                        System.out.println("Error. Not valid request :(");
                         break;
                 }
 
@@ -179,7 +160,7 @@ public class UDPServer {
 
         DatagramSocket socket;
         socket = new DatagramSocket();
-        AtmClient response = new AtmClient(responseType, -1, -1, responseAmount);
+        ATM response = new ATM(responseType, -1, -1, responseAmount);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ObjectOutputStream os = new ObjectOutputStream(outputStream);
         os.writeObject(response);

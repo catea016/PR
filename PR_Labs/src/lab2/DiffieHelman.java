@@ -8,6 +8,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.*;
+import java.security.KeyPairGenerator;
 import java.security.spec.KeySpec;
 import java.util.Base64;
 import java.util.Random;
@@ -30,7 +31,7 @@ public class DiffieHelman {
         KeyPairGenerator kpg = null;
         try {
             kpg = KeyPairGenerator.getInstance("EC");
-            kpg.initialize(128);
+            kpg.initialize(256);
             KeyPair kp = kpg.generateKeyPair();
             publickey = kp.getPublic();
             keyAgreement = KeyAgreement.getInstance("ECDH");
