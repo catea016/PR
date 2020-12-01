@@ -11,7 +11,7 @@ public class ATM implements Serializable {
     public int Request;
     public int amount;
     private int balance;
-    private String clientRequest;
+
 
     static BankAccount bankAccount1 = new BankAccount(000001, 1111, 5000);
     static BankAccount bankAccount2 = new BankAccount(000002, 2222, 7000);
@@ -64,9 +64,6 @@ public class ATM implements Serializable {
         this.balance = balance;
     }
 
-    public void setClientRequest(String clientRequest) {
-        this.clientRequest = clientRequest;
-    }
 
 
     public int getAccountNumber() {

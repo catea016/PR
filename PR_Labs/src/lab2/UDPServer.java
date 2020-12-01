@@ -9,7 +9,6 @@ public class UDPServer {
     // Server UDP socket runs at this port
     public final static int port = 5005;
     static public int bufSize = 512;
-    /*static DiffieHelman dh = new DiffieHelman();*/
 
     static public void main(String args[]) {
 
@@ -34,11 +33,11 @@ public class UDPServer {
             try {
                 receivedPacket.setLength(bufSize);
                 serverSocket.receive(receivedPacket);
-                //System.out.println("Received message from : " + receivedPacket.getAddress().getHostAddress());
                 byte[] receivedData = receivedPacket.getData();
                 byte[] decReceivedData = dh.decrypt(receivedData);
                 ErrorChecking checksum = new ErrorChecking();
-                checksum.getChecksumCRC32(decReceivedData);
+                checksum.getCRC32(decReceivedData);
+               // System.out.println(checksum.getChecksumCRC32(receivedData));
 
                 ByteArrayInputStream in = new ByteArrayInputStream(decReceivedData);
                 ObjectInputStream is = new ObjectInputStream(in);
@@ -166,7 +165,7 @@ public class UDPServer {
         os.writeObject(response);
         byte[] sendingData = outputStream.toByteArray();
         ErrorChecking checksum = new ErrorChecking();
-        checksum.getChecksumCRC32(sendingData);
+        checksum.getCRC32(sendingData);
         DatagramPacket sendingPacket = new DatagramPacket(sendingData, sendingData.length, clientAddress, clientPort);
         socket.send(sendingPacket);
     }

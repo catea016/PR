@@ -20,9 +20,6 @@ public class DiffieHelman {
     byte[] sharedsecret;
     static Random rand = new SecureRandom();
 
-
-    String ALGO = "AES";
-
     DiffieHelman() {
         makeKeyExchangeParams();
     }
@@ -98,7 +95,7 @@ public class DiffieHelman {
     }
 
     protected Key generateKey() {
-        return new SecretKeySpec(sharedsecret, ALGO);
+        return new SecretKeySpec(sharedsecret, "AES");
     }
 
 }

@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class UDPClient extends ATM {
 
     public final static int port = 5005;
-    private static final int TIMEOUT = 3000;   // Resend timeout (milliseconds)
+    private static final int TIMEOUT = 3000;
     private static final int MAXTRIES = 5;     // Maximum number of retransmissions
 
     static DatagramSocket clientSocket;
@@ -33,11 +33,10 @@ public class UDPClient extends ATM {
                 Request = input.nextInt();
                 //0: login,  1: balance , 2: withdraw, 3: deposit , 4: exit
 
-                ATM atm = new ATM(); // initializes client
+                ATM atm = new ATM(); // initializes  atm client
 
                 switch (Request) {
                     case 0: // login
-                        atm.setClientRequest("Login");
                         System.out.println("Enter account number");
                         AccountNumber = input.nextInt();
                         System.out.println("Enter account pin");
@@ -46,13 +45,11 @@ public class UDPClient extends ATM {
                         break;
 
                     case 1: // 1: balance
-                        atm.setClientRequest("Balance");
                         System.out.println("Asking server for balance");
                         atm = new ATM(1, -1, -1, -1);
                         break;
 
                     case 2: // 2: withdraw
-                        atm.setClientRequest("Withdraw");
                         System.out.println("How much would you like to withdraw?");
                         amount = input.nextInt();
                         System.out.println("Withdrawing amount: " + amount);
@@ -60,7 +57,6 @@ public class UDPClient extends ATM {
                         break;
 
                     case 3: // 3: deposit
-                        atm.setClientRequest("Deposit");
                         System.out.println("How much would you like to deposit?");
                         amount = input.nextInt();
                         System.out.println("Requesting amount: " + amount + " money to be deposited into your account.");
@@ -68,7 +64,6 @@ public class UDPClient extends ATM {
                         break;
 
                     case 4: // 4: exit
-                        atm.setClientRequest("Exit");
                         atm = new ATM(4, -1, -1, -1);
                         System.out.println("Goodbye!");
                         break;
@@ -88,7 +83,9 @@ public class UDPClient extends ATM {
                 byte[] sendingData = outputStream.toByteArray();
                 byte[] encSendingData = dh.encrypt(sendingData);
                 ErrorChecking checksum = new ErrorChecking();
-                checksum.getChecksumCRC32(encSendingData);
+                checksum.getCRC32(encSendingData);
+                //System.out.println(checksum.getChecksumCRC32(encSendingData));
+
 
                 DatagramPacket sendingPacket = new DatagramPacket(encSendingData, encSendingData.length, IPAddress, port);
 
@@ -96,7 +93,7 @@ public class UDPClient extends ATM {
                 DatagramPacket receivingPacket = new DatagramPacket(receivingDataBuffer, receivingDataBuffer.length);
 
                 byte[] receivedData = receivingPacket.getData();
-
+                // implementing retransmission
                 int tries = 0;
                 boolean receivedResponse = false;
                 do {
@@ -116,23 +113,23 @@ public class UDPClient extends ATM {
                 } while ((!receivedResponse) && (tries < MAXTRIES));
 
                 if (receivedResponse) {
-                    checksum.getChecksumCRC32(receivedData);
+                    checksum.getCRC32(receivedData);
                     ByteArrayInputStream in = new ByteArrayInputStream(receivedData);
                     ObjectInputStream inputStream = new ObjectInputStream(in);
-                    ATM atmMessage = (ATM) inputStream.readObject();
-                    switch (atmMessage.getRequest()) {
+                    ATM responseMessage = (ATM) inputStream.readObject();
+                    switch (responseMessage.getRequest()) {
                         case 5:
                             if (Request == 0) {
                                 System.out.println("Successfully logged in. " + "\n" + " 0: login " + "\n" + " 1: balance" + "\n" + " 2: withdraw" + "\n" + " 3: deposit" + "\n" + " 4: exit");
                             } else if (Request == 1) { // balance
-                                System.out.println("Successful: Account balance is " + atmMessage.getAmount() + ".");
-                                atmMessage.setBalance(atmMessage.getAmount());
+                                System.out.println("Account balance is " + responseMessage.getAmount() + ".");
+                                responseMessage.setBalance(responseMessage.getAmount());
                             } else if (Request == 2) { // withdraw
-                                System.out.println("Successful: withdrawing " + amount + ". Account balance is " + atmMessage.getAmount() + ".");
-                                atmMessage.setBalance(atmMessage.getAmount());
+                                System.out.println("Withdrawing " + amount + ". Account balance is " + responseMessage.getAmount() + ".");
+                                responseMessage.setBalance(responseMessage.getAmount());
                             } else if (Request == 3) { // deposit
-                                System.out.println("Successful: depositing " + amount + ". Account balance is " + atmMessage.getAmount() + ".");
-                                atmMessage.setBalance(atmMessage.getAmount());
+                                System.out.println("Depositing " + amount + ". Account balance is " + responseMessage.getAmount() + ".");
+                                responseMessage.setBalance(responseMessage.getAmount());
                             } else if (Request == 4) {
                                 System.out.println("Successfully logout. Next client can login ");
                             }
@@ -140,22 +137,22 @@ public class UDPClient extends ATM {
 
                         case 6:
                             if (Request == 0) {
-                                System.out.println("Wrong credentials (pin/account number) or your account doesn't exist. Please check the data again");
+                                System.err.println("Wrong credentials (pin/account number) or your account doesn't exist. Please check the data again");
                             } else if (Request == 1) {
-                                System.out.println("You need first to login if you want to check other operations");
+                                System.err.println("You need first to login if you want to check other operations");
                             } else if (Request == 2) {
-                                System.out.println("Not enough resources for this withdrawal! Or some problems with your account appear");
+                                System.err.println("Not enough resources for this withdrawal! Or some problems with your account appear");
                             } else if (Request == 3){
-                                System.out.println("We didn't fond your account, you need to login first");
+                                System.err.println("We didn't fond your account, you need to login first");
                             } else if (Request == 4){
-                                System.out.println("You are not logged in");
+                                System.err.println("You are not logged in");
                             } else {
-                                System.out.println("Error. Not valid request :(");
+                                System.err.println("Error. Not valid request :(");
                             }
                             break;
                     }
                 } else {
-                    System.out.println("No response -- giving up.");
+                    System.err.println("No response -- giving up.");
                 }
             }
         } catch (Exception e) {
